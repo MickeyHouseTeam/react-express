@@ -5,10 +5,10 @@ router.get('/list',(req,res)=>{  //获取订单列表 带分页
   // let page = req.query.page
   // let pageSize = req.query.pageSize
   // let {page = 1, pageSize = 3} = req.query
-  let {_id,page,pageSize,orderStatus} = req.query
+  let {_id,page,pageSize,orderStatus,kw} = req.query
   // console.log(page,pageSize)
-  console.log(orderStatus)
-  getAllOrderList(_id,page,pageSize,orderStatus)
+  console.log(orderStatus,kw)
+  getAllOrderList(_id,page,pageSize,orderStatus,kw)
     .then((data)=>{
       console.log('查询成功',data)
       let {allCount,result} = data
