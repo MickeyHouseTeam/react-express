@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 // var mongoose = require('mongoose');
 var admin = require('../db/model/adminM')
+var adminSchema = require('../db/model/adminSchema')
+
 
 router.get('/', function (req, res, next) {
   var dataValue = req.query.dataValue;
@@ -74,6 +76,65 @@ router.post('/login', (req, res) => {
     }
   })
 })
+
+
+
+//ly//
+
+
+ router.get('/all',(req,res)=>{
+    adminSchema.find({},(err,relut)=>{
+        res.send(relut)
+    })
+ })
+ router.post('/insertMany',(req,res)=>{
+    var {obj} = req.body
+        obj = JSON.parse(obj)
+    adminSchema.insertMany(obj).then(()=>{
+        res.send('添加成功')
+        console.log(obj)
+
+    }).catch((relsut)=>{
+        res.send('添加失败')
+        console.log(obj)
+    })
+ })
+ router.post('/updateOne',(req,res)=>{
+    var {_id} = req.query
+    var {Type,name,original,desc,img,quantity,current,time,norms} = req.body
+    adminSchema.updateOne({_id},{Type,name,original,desc,img,quantity,current,time,norms},(err,relut)=>{
+      if(!err){
+          res.send('修改成功')
+      }else{
+          res.send('修改失败')
+      }
+    })
+ })
+
+ router.get('/deleteOne',(req,res)=>{
+    var {_id} = req.query
+    adminSchema.deleteOne({_id},(err)=>{
+        if(!err){
+            res.send('删除成功')
+        }
+    })
+ })
+
+ router.get('/type',(req,res)=>{
+     var {Type} = req.query
+    adminSchema.find({Type},(err,data)=>{
+        if(!err){
+            res.send({
+                msg:'成功',
+                result:data
+            })
+        }else{
+            res.send({
+                msg:'失败'
+            })
+        }
+    })
+ })
 
 module.exports = router;
   
