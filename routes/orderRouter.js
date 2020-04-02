@@ -14,7 +14,10 @@ router.get('/list',(req,res)=>{  //获取订单列表 带分页
       let {allCount,result} = data
       res.send({code:200,msg:'查询成功',allCount,list:result})
     })
-    .catch((error)=>{console.log('查询失败',error);res.send({code:400,msg:'查询失败:'+error})})
+    .catch((error)=>{
+      console.log('查询失败',error);
+      res.send({code:400,msg:'查询失败:'+error})
+    })
 })
 router.post('/insert',(req,res)=>{   //订单添加
   // console.log(req.body)
@@ -41,23 +44,23 @@ router.post('/insert',(req,res)=>{   //订单添加
       console.log('插入成功',data);
       res.send({code:200,msg:'插入成功',list:data})
     })
-    .catch((error)=>{
-      console.log('插入失败',error);
-      res.send({code:400,msg:'插入失败:'+error})
+    .catch((err)=>{
+      console.log('插入失败',err);
+      res.send({code:400,msg:'插入失败:'+err})
     })
 })
 router.post('/del',(req,res)=>{
   // console.log('删除的req:',req)
   let {_id} = req.body
-  console.log('路由：',_id)
+  console.log('路由_id：',_id)
   orderDelById(_id)
     .then((data)=>{
       console.log('删除成功',data)
       res.send({code:200,msg:'删除成功',list:data})
     })
-    .catch((error)=>{
-      console.log('删除失败',error)
-      res.send({code:400,msg:'删除失败:'+error})
+    .catch((err)=>{
+      console.log('删除失败',err)
+      res.send({code:400,msg:'删除失败:'+err})
     })
 })
 router.put('/update',(req,res)=>{//修改
