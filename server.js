@@ -15,13 +15,10 @@ app.use('/admin',adminRouter)
 
 // 静态资源路径
 app.use('/public',express.static(path.join(__dirname,'./public')))
-<<<<<<< HEAD
 
 app.use('/admin/order',orderRouter)
-=======
 app.use('/user',userRouter)
 
->>>>>>> yaoqing
 app.listen(3000,()=>{
     console.log('服务端开启')
 })

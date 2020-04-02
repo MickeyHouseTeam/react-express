@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 // var mongoose = require('mongoose');
 var admin = require('../db/model/adminM')
-var adminSchema = require('..db/model/adminSchema')
+var adminSchema = require('../db/model/adminSchema')
 
 
 router.get('/', function (req, res, next) {
